@@ -16,12 +16,12 @@ public class Part1 {
     private static String registeredPassword;
     private static String registeredPhone;
 
-    // Check if username is valid (must contain underscore and max 5 chars)
+    // Check if username is valid 
     public static boolean checkUserName(String username) {
         return username.contains("_") && username.length() <= 5;
     }
 
-    // Check password complexity (at least 8 chars, uppercase, number, special char)
+    // Check password complexity 
     public static boolean checkPasswordComplexity(String password) {
         boolean hasUpper = false, hasDigit = false, hasSpecial = false;
 
@@ -37,7 +37,7 @@ public class Part1 {
         return hasUpper && hasDigit && hasSpecial;
     }
 
-    // Check if cell phone number is valid (10 digits, starts with 0)
+    // Check if cell phone number is valid 
     public static boolean checkCellPhoneNumber(String phone) {
         return phone.matches("0\\d{9}");
     }
@@ -75,7 +75,7 @@ public class Part1 {
         }
     }
 
-    // Main method (for user input)
+    // Main method 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
