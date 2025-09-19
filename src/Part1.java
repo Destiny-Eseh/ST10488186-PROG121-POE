@@ -4,7 +4,7 @@
  */
 
 /**
- *
+ * 
  * @author RC_Student_lab
  */
 
@@ -12,96 +12,104 @@ import java.util.Scanner;
 
 public class Part1 {
 
-    private static String registeredUsername;
-    private static String registeredPassword;
-    private static String registeredPhone;
+    private static String savedUsername;
+    private static String savedPassword;
+    private static String savedPhone;
+    private static String savedFirstName;
+    private static String savedLastName;
 
-    // Check if username is valid 
-    public static boolean checkUserName(String username) {
-        return username.contains("_") && username.length() <= 5;
+    public static boolean isUsernameValid(String u) {
+        return u.contains("_") && u.length() <= 5;
     }
 
-    // Check password complexity 
-    public static boolean checkPasswordComplexity(String password) {
-        boolean hasUpper = false, hasDigit = false, hasSpecial = false;
-
-        if (password.length() < 8) {
-            return false;
+    public static boolean isPasswordValid(String p) {
+        if (p == null || p.length() < 8) return false;
+        boolean upper = false, digit = false, special = false;
+        for (char c : p.toCharArray()) {
+            if (Character.isUpperCase(c)) upper = true;
+            else if (Character.isDigit(c)) digit = true;
+            else if (!Character.isLetterOrDigit(c)) special = true;
         }
-
-        for (char c : password.toCharArray()) {
-            if (Character.isUpperCase(c)) hasUpper = true;
-            else if (Character.isDigit(c)) hasDigit = true;
-            else if (!Character.isLetterOrDigit(c)) hasSpecial = true;
-        }
-        return hasUpper && hasDigit && hasSpecial;
+        return upper && digit && special;
     }
 
-    // Check if cell phone number is valid 
-    public static boolean checkCellPhoneNumber(String phone) {
-        return phone.matches("0\\d{9}");
+    public static boolean isPhoneValid(String phone) {
+        // +27 followed by 9 digits → total characters including + is 12
+        return phone != null && phone.matches("\\+27\\d{9}");
     }
 
-    // Register user
-    public static String registerUser(String username, String password, String phone) {
-        if (!checkUserName(username)) {
-            return "Username is not correctly formatted, please ensure that your username contains an underscore and is no more than five characters in length.";
+    public static String register(String username, String password, String phone,
+                                  String firstName, String lastName) {
+        if (!isUsernameValid(username)) {
+            return "The username is not valid. It must be no more than 5 characters long and include an _";
         }
-        if (!checkPasswordComplexity(password)) {
-            return "Password is not correctly formatted, please ensure that the password contains at least eight characters, a capital letter, a number, and a special character.";
+        if (!isPasswordValid(password)) {
+            return "The password is not valid. It must contain a capital letter(A-Z), a number (1-10), and a special character (#-$) and have a minimum of eight characters( 8).";
         }
-        if (!checkCellPhoneNumber(phone)) {
-            return "Cell phone number is incorrectly formatted. Please ensure it contains 10 digits and starts with 0.";
+        if (!isPhoneValid(phone)) {
+            return "The phone number is not valid. It must have a total of 10 digits and begin with +27.";
         }
 
-        registeredUsername = username;
-        registeredPassword = password;
-        registeredPhone = phone;
+        savedUsername = username;
+        savedPassword = password;
+        savedPhone = phone;
+        savedFirstName = firstName;
+        savedLastName = lastName;
 
         return "User registered successfully.";
     }
 
-    // Login user
-    public static boolean loginUser(String username, String password) {
-        return username.equals(registeredUsername) && password.equals(registeredPassword);
+    public static boolean login(String username, String password) {
+        if (savedUsername == null) return false;
+        return savedUsername.equals(username) && savedPassword.equals(password);
     }
 
-    // Return login status
-    public static String returnLoginStatus(String firstName, String lastName, boolean loginSuccess) {
-        if (loginSuccess) {
-            return "Welcome " + firstName + " " + lastName + ", it is great to see you.";
-        } else {
-            return "Username or password incorrect, please try again.";
-        }
+    public static String welcomeMessage() {
+        return "Welcome " + savedFirstName + " " + savedLastName + ", it is great to see you.";
     }
 
-    // Main method 
+    public static String loginMessage(boolean success) {
+        if (success) return welcomeMessage();
+        return "Login failed. Username or password incorrect.";
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter username: ");
-        String username = sc.nextLine();
-        System.out.print("Enter password: ");
+        System.out.print("Enter first name: ");
+        String first = sc.nextLine().trim();
+        System.out.print("Enter last name: ");
+        String last = sc.nextLine().trim();
+
+        System.out.print("Choose a username (include _ and max 5 chars): ");
+        String username = sc.nextLine().trim();
+        System.out.print("Create a password: ");
         String password = sc.nextLine();
-        System.out.print("Enter cell phone number: ");
-        String phone = sc.nextLine();
+        System.out.print("Enter phone : ");
+        String phone = sc.nextLine().trim();
 
-        String registrationMessage = registerUser(username, password, phone);
-        System.out.println(registrationMessage);
+        String reg = register(username, password, phone, first, last);
+        System.out.println(reg);
 
-        if (registrationMessage.equals("User registered successfully.")) {
-            System.out.println("\n=== User Login ===");
-            System.out.print("Enter username: ");
-            String loginUser = sc.nextLine();
-            System.out.print("Enter password: ");
-            String loginPass = sc.nextLine();
+        if (reg.equals("User registered successfully.")) {
+            System.out.print("Login: username: ");
+            String lu = sc.nextLine().trim();
+            System.out.print("Login: password: ");
+            String lp = sc.nextLine();
 
-            boolean loginSuccess = loginUser(loginUser, loginPass);
-            System.out.println(returnLoginStatus("Kyle", "Smith", loginSuccess));
+            boolean ok = login(lu, lp);
+            System.out.println(loginMessage(ok));
         }
 
         sc.close();
         
-    }// end of main method
+    } // end main method
     
-} // end of main class
+} // end main class
+
+
+/*
+ * References:
+ * W3Schools Java Regex Tutorial: https://www.w3schools.com/java/java_regex.asp
+ * ChatGPT assistance for phone number regex and validation.
+ */
