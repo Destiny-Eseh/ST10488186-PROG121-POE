@@ -17,24 +17,24 @@ public class Part1Test {
     
     @Test
     public void testValidUsername() {
-        assertTrue(Part1.isUsernameValid("Des_1"));   // contains _ and <= 5
+        assertTrue(Part1.isUsernameValid("Des_1"));  //** meets all conditions **// 
     }
 
     @Test
     public void testInvalidUsername_NoUnderscore() {
-        assertFalse(Part1.isUsernameValid("Dest1")); // missing _
+        assertFalse(Part1.isUsernameValid("Dest1")); 
     }
 
     @Test
     public void testInvalidUsername_TooLong() {
-        assertFalse(Part1.isUsernameValid("User_12")); // more than 5 chars
+        assertFalse(Part1.isUsernameValid("User_12")); 
     }
 
     //** Password tests **//
     
     @Test
     public void testValidPassword() {
-        assertTrue(Part1.isPasswordValid("Otaku19#")); // meets all conditions
+        assertTrue(Part1.isPasswordValid("Otaku19#")); //** meets all conditions **//
     }
 
     @Test
@@ -61,24 +61,24 @@ public class Part1Test {
     
     @Test
     public void testValidPhone() {
-        assertTrue(Part1.isPhoneValid("+27815950322")); // correct format
+        assertTrue(Part1.isPhoneValid("+27815950322")); //** meets all conditions **//
     }
 
     @Test
     public void testInvalidPhone_WrongPrefix() {
-        assertFalse(Part1.isPhoneValid("0815950322")); // missing +27
+        assertFalse(Part1.isPhoneValid("0815950322")); 
     }
 
     @Test
     public void testInvalidPhone_NotEnoughDigits() {
-        assertFalse(Part1.isPhoneValid("+27815950")); // too short
+        assertFalse(Part1.isPhoneValid("+27815950")); 
     }
 
     //** Register tests **//
     
     @Test
     public void testRegisterSuccess() {
-        String result = Part1.register("Des_1", "Otaku19#", "+27815950322", "Destiny", "Eseh");
+        String result = Part1.register("Des_1", "Otaku19#", "+27815950322", "Destiny", "Eseh"); //** meets all conditions **//
         assertEquals("User registered successfully.", result);
     }
 
@@ -104,7 +104,7 @@ public class Part1Test {
     
     @Test
     public void testLoginSuccess() {
-        Part1.register("Des_1", "Otaku19#", "+27815950322", "Destiny", "Eseh");
+        Part1.register("Des_1", "Otaku19#", "+27815950322", "Destiny", "Eseh"); //** meets all conditions **//
         assertTrue(Part1.login("Des_1", "Otaku19#"));
     }
 
@@ -123,7 +123,8 @@ public class Part1Test {
     //** Login message tests **//
     
     @Test
-    public void testLoginMessageSuccess() {
+    public void testLoginMessageSuccess() { //** meets all conditions **//
+        
         Part1.register("Des_1", "Otaku19#", "+27815950322", "Destiny", "Eseh");
         boolean success = Part1.login("Des_1", "Otaku19#");
         String msg = Part1.loginMessage(success);
