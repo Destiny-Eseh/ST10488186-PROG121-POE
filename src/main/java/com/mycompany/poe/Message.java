@@ -24,20 +24,17 @@ public class Message {
     static int totalMessages = 0;
     static ArrayList<String> sentMessages = new ArrayList<>();
 
-    // Constructor to create a message easily from POE.java
-    Message(String id, String recipient, String text) {
+        Message(String id, String recipient, String text) {
         this.messageID = id;
         this.recipientCell = recipient;
         this.messageText = text;
     }
 
-    // 1. checkMessageID()
-    Boolean checkMessageID() {
+        Boolean checkMessageID() {
         return messageID.length() <= 10;
     }
 
-    // 2. checkRecipientCell()
-    int checkRecipientCell() {
+        int checkRecipientCell() {
         if (recipientCell.length() <= 10 && recipientCell.startsWith("0")) {
             return 1;
         } else {
@@ -45,14 +42,12 @@ public class Message {
         }
     }
 
-    // 3. createMessageHash()
     String createMessageHash() {
         messageHash = Integer.toString(messageText.hashCode());
         return messageHash;
     }
 
-    // 4. SentMessage()
-    String SentMessage() {
+        String SentMessage() {
         String[] options = {"Send", "Store", "Disregard"};
         int choice = JOptionPane.showOptionDialog(null,
                 "Choose what to do with the message:",
@@ -76,8 +71,7 @@ public class Message {
         }
     }
 
-    // 5. printMessages()
-    String printMessages() {
+        String printMessages() {
         StringBuilder sb = new StringBuilder();
         sb.append("All Sent Messages:\n");
         for (String msg : sentMessages) {
@@ -87,13 +81,11 @@ public class Message {
         return sb.toString();
     }
 
-    // 6. returnTotalMessages()
-    int returnTotalMessages() {
+        int returnTotalMessages() {
         return totalMessages;
     }
 
-    // 7. storeMessage()
-    void storeMessage() {
+       void storeMessage() {
         JSONObject obj = new JSONObject();
         obj.put("MessageID", messageID);
         obj.put("MessageHash", createMessageHash());
@@ -112,8 +104,7 @@ public class Message {
         }
     }
 
-    // 8. get full details for display in POE
-    String getMessageDetails() {
+        String getMessageDetails() {
         return "MessageID: " + messageID +
                 "\nMessageHash: " + createMessageHash() +
                 "\nRecipient: " + recipientCell +
