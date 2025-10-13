@@ -14,6 +14,8 @@ import javax.swing.JOptionPane;
 public class POE {
     public static void main(String[] args) {
 
+        // User Registration Part 1
+        
         UserRegistration reg = new UserRegistration();
 
         String u = JOptionPane.showInputDialog("Enter username: ");
@@ -37,6 +39,8 @@ public class POE {
 
         JOptionPane.showMessageDialog(null, "Login successful!\nWelcome " + lu + "!");
 
+        // User Messaging Part 2 // 
+        
         int totalMessages = 0;
         boolean keepSending = true;
 
