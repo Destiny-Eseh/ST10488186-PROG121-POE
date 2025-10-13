@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Message {
+    
     String messageID;
     String recipientCell;
     String messageText;
