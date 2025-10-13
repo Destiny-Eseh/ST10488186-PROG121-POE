@@ -109,5 +109,7 @@ public class Message {
                 "\nMessageHash: " + createMessageHash() +
                 "\nRecipient: " + recipientCell +
                 "\nMessage: " + messageText;
-    }
-}
+        
+    }// end of main method 
+        
+}// end of class
