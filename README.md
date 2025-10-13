@@ -31,5 +31,3 @@ Tools and Libraries Used
 - JUnit
 - org.json
 - GitHub Actions
-
-ChatGPT helped with the JSON message storing method.
