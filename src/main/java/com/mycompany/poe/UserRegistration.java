@@ -48,5 +48,7 @@ public class UserRegistration {
 
     public boolean loginUser(String username, String password) {
         return username.equals(this.registeredUser) && password.equals(this.registeredPassword);
-    }
-}
+        
+    }// end of main method
+    
+}// end of class 
