@@ -18,16 +18,14 @@ Part 2: Messaging
 
 Testing
 - JUnit tests were created to check user registration, login, and message validation.
-- Test files: UserRegistrationTest.java and MessageTest.java
+- Test files: UserRegistrationTest.java, MessageTest.java, and MessageManagementTest.java
 
-Continuous Integration (CI)
-- GitHub Actions was used to automate testing with Maven.
-- The workflow file is in: .github/workflows/ci.yml
-- Tests run automatically whenever code is pushed to GitHub.
+Part 3: Message Management
+- After writing a message, users can choose to:
+  - Store the message
+  - Discard the message
+  - Send the message
+- Incorrect message formats do not crash the program.
+- Users are allowed to try again until the message is valid.
+- JSON storage includes attribution: “ChatGPT: Message is stored as JSON File”.
 
-Tools and Libraries Used
-- Java
-- Maven
-- JUnit
-- org.json
-- GitHub Actions
